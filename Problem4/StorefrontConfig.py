@@ -3,5 +3,16 @@ class StorefrontConfig:
         self.data = data
 
     def update(self, modify_data):
-        for i in range(len(modify_data.keys())):
-            self.data[m_keys[i]] = modify_data[m_keys[i]]
+        modify(self.data, modify_data)
+
+    def modify(d, md):
+        for i in range(len(md.keys())):
+            if isinstance(list(d.keys())[i], list):
+                d[list(d.keys())[i]] = md[list(d.keys())[i]]
+            elif isinstance(list(d.keys())[i], dict):
+                modify(d[list(d.keys())[i]], md[list(d.keys())[i]])
+            else:
+                if list(d.keys())[i] in list(md.keys()):
+                    d[list(d.keys())[i]] = md[list(d.keys())[i]]
+                else:
+                    pass
