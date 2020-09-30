@@ -20,15 +20,15 @@ c3 = {}
 
 
 def check(a, b, c):
-    if (len(a) != len(b)) or (len(b) != len(c)):
+    if (len(a) != len(c)) or (len(b) != len(c)):
         return False
     else:
-    b = list(b)
-    c = list(c)
-    if (sorted(a) == sorted(b)) and (sorted(b) == sorted(c)): # O(nlogn)
-        return True
-    else:
-        return False
+        b = list(b)
+        c = list(c)
+        if (sorted(a) == sorted(b)) and (sorted(b) == sorted(c)): # O(nlogn)
+            return True
+        else:
+            return False
 
 
 check(a, b, c)
