@@ -20,9 +20,12 @@ c3 = {}
 
 
 def check(a, b, c):
+    if (len(a) != len(b)) or (len(b) != len(c)):
+        return False
+    else:
     b = list(b)
     c = list(c)
-    if sorted(a) == sorted(b) == sorted(c):
+    if (sorted(a) == sorted(b)) and (sorted(b) == sorted(c)):
         return True
     else:
         return False
