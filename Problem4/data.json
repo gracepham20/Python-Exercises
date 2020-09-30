@@ -1,0 +1,34 @@
+{
+  "expiration_time": 300,
+  "id": 0,
+  "product": "xchat",
+  "storefront": {
+      "banner_enabled": true,
+      "banner_text": "Dynamic offer banner",
+      "description": "",
+      "enabled": true,
+      "purchase_options": [
+          {
+              "button_text": "Dynamic offer - button_text",
+              "description": "Dynamic offer - description",
+              "id": "",
+              "price": "7.99",
+              "price_text": "price_text",
+              "session_count": "3",
+              "subtitle": "Dynamic offer - subtitle",
+              "title": "Dynamic offer - title",
+              "suffix": "Dynamic offer - suffix",
+              "trial_duration": 0,
+              "min_member_count": 1,
+              "max_member_count": 1,
+              "action": "purchase",
+              "frequency_view": "monthly",
+              "free_learning_subscription": false,
+              "team_type": "personal",
+              "frequency": null,
+          }
+      ],
+  },
+  "utm_campaign": "19203420349",
+  "utm_source": "",
+}
