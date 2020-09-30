@@ -19,6 +19,10 @@ convert_dict = {1: "one",
 
 def choose(sentence):
     s = sentence.split()
+    s0 = s[0:2] + s[3:9] + s[10:]
+    s0 = " ".join(s0)
+    if s0 != "I completed sessions and I rated my expert stars":
+        return None, None
     sess = int(s[2])
     star = s[9]
     return sess, star
@@ -26,17 +30,20 @@ def choose(sentence):
 
 def convert(sentence):
     sess, star = choose(sentence)
+    if sess is None:
+        return "Input invalid"
+
     if sess in convert_dict.keys():
         sess = convert_dict[sess]
     else:
-        return "Sessions out of range"
+        return print("Sessions out of range")
 
     if star in list(convert_dict.values())[:5]:
         star = list(convert_dict.keys())[list(convert_dict.values()).index(star)]
     else:
-        return "Stars out of range"
+        return print("Stars out of range")
 
-    return print("I completed", sess, "sessions and I rated my expert", star, "stars")
+    return print(f"I completed {sess} sessions and I rated my expert {star} stars")
 
 
 convert(sen1)

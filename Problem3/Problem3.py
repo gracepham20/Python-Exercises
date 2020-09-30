@@ -25,7 +25,7 @@ def check(a, b, c):
     else:
     b = list(b)
     c = list(c)
-    if (sorted(a) == sorted(b)) and (sorted(b) == sorted(c)):
+    if (sorted(a) == sorted(b)) and (sorted(b) == sorted(c)): # O(nlogn)
         return True
     else:
         return False

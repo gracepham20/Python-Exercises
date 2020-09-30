@@ -6,7 +6,7 @@ class Card():
         self.suit = suit
 
     def __str__(self):
-        return print("Value:", self.value, "; Suit:", self.suit)
+        return "Value: " + self.value + "; Suit: " + self.suit
 
 class Deck():
     def __init__(self):
@@ -29,7 +29,13 @@ class Deck():
         newDeck = self.shuffle()
         return newDeck[0]
 
+    def __str__(self):
+        d = ""
+        for card in self.deck:
+            d = d + card.__str__() + "\n"
+        return d
+
 deckA = Deck()
 deckB = Deck()
-print(deckA.deal())
+print(deckA.shuffle())
 print(deckB.deal())

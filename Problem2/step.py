@@ -39,12 +39,12 @@ class Step():
         except:
             raise InvalidValueException("Invalid number of sessions")
 
-        try:
-            star = Session.TEXT_TO_NUMBER_MAP[star]
-        except:
+        if star in list(Session.NUMBER_TO_TEXT_MAP.values())[:5]:
+            star = list(Session.NUMBER_TO_TEXT_MAP.keys())[list(Session.NUMBER_TO_TEXT_MAP.values()).index(star)]
+        else:
             raise InvalidValueException("Invalid number of stars")
 
-        return print("I completed", str(sess), "sessions and I rated my expert", str(star), "stars")
+        return print(f"I completed {sess} sessions and I rated my expert {star} stars")
 
     
 Step(2, "five").make_step()

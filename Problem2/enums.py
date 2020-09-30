@@ -8,8 +8,3 @@ class Session(object):
                           7: "seven",
                           8: "eight",
                           9: "nine"}
-    TEXT_TO_NUMBER_MAP = {"one": 1,
-                          "two": 2,
-                          "three": 3,
-                          "four": 4,
-                          "five": 5}
