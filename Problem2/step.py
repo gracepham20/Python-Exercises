@@ -1,11 +1,13 @@
 from enums import Session
 
+
 class InvalidValueException(Exception):
     def __init__(self, message):
         self.message = str(message)
 
     def InvalidValueException(self):
         pass
+
 
 class Step():
     def __init__(self, number_of_sessions, number_of_stars):
@@ -19,11 +21,14 @@ class Step():
         return self.number_of_stars
 
     def make_step(self):
-        return self.conversion("I completed " + str(self.getSess()) + " sessions and I rated my expert " + str(self.getStar()) + " stars")
+        return self.conversion("I completed " + str(self.getSess()) + " sessions and I rated my expert "
+                               + str(self.getStar()) + " stars")
 
-    def choose(self, sentence):
-        sess = int(sentence.split()[2])
-        star = sentence.split()[9]
+    @staticmethod
+    def choose(sentence):
+        s = sentence.split()
+        sess = int(s[2])
+        star = s[9]
         return sess, star
 
     def conversion(self, sentence):
