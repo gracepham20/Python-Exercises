@@ -25,8 +25,9 @@ convert_stars = {"one": 1,
 
 
 def choose(sentence):
-    sess = int(sentence.split()[2])
-    star = sentence.split()[9]
+    s = sentence.split()
+    sess = int(s[2])
+    star = s[9]
     return sess, star
 
 
