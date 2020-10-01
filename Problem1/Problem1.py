@@ -4,6 +4,9 @@ sen1 = "I completed 2 sessions and I rated my expert five stars"
 # input 2
 sen2 = "I completed 10 sessions and I rated my expert five stars"
 
+# input 3
+sen3 = "I completed"
+
 
 # dictionary for number_of_sessions
 convert_dict = {1: "one",
@@ -19,13 +22,16 @@ convert_dict = {1: "one",
 
 def choose(sentence):
     s = sentence.split()
-    s0 = s[0:2] + s[3:9] + s[10:]
-    s0 = " ".join(s0)
-    if s0 != "I completed sessions and I rated my expert stars":
+    if len(s) != 11:
         return None, None
-    sess = int(s[2])
-    star = s[9]
-    return sess, star
+    else:
+        s0 = s[0:2] + s[3:9] + s[10:]
+        s0 = " ".join(s0)
+        if s0 != "I completed sessions and I rated my expert stars":
+            return None, None
+        sess = int(s[2])
+        star = s[9]
+        return sess, star
 
 
 def convert(sentence):
@@ -48,3 +54,4 @@ def convert(sentence):
 
 convert(sen1)
 convert(sen2)
+convert(sen3)

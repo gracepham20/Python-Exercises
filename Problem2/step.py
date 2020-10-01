@@ -1,12 +1,5 @@
 from enums import Session
-
-
-class InvalidValueException(Exception):
-    def __init__(self, message):
-        self.message = str(message)
-
-    def InvalidValueException(self):
-        pass
+from exception import InvalidValueException
 
 
 class Step():
@@ -21,19 +14,10 @@ class Step():
         return self.number_of_stars
 
     def make_step(self):
-        return self.conversion("I completed " + str(self.getSess()) + " sessions and I rated my expert "
-                               + str(self.getStar()) + " stars")
+        return self.convert(self.number_of_sessions, self.number_of_stars)
 
     @staticmethod
-    def choose(sentence):
-        s = sentence.split()
-        sess = int(s[2])
-        star = s[9]
-        return sess, star
-
-    def conversion(self, sentence):
-        sess, star = self.choose(sentence)
-
+    def convert(sess, star):
         try:
             sess = Session.NUMBER_TO_TEXT_MAP[sess]
         except:
@@ -45,8 +29,3 @@ class Step():
             raise InvalidValueException("Invalid number of stars")
 
         return print(f"I completed {sess} sessions and I rated my expert {star} stars")
-
-    
-Step(2, "five").make_step()
-Step(0, "five").make_step()
-Step(2, "ten").make_step()

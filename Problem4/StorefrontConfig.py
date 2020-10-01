@@ -3,10 +3,10 @@ class StorefrontConfig:
         self.data = data
 
     def modify(self, d, md):
-        for i in range(len(md.keys())):
-            if isinstance(list(d.keys())[i], list):
+        for i in range(len(md.keys())):  # loop through list key in dictionary
+            if isinstance(list(d.keys())[i], list):  # check if the corresponding value is a list
                 d[list(d.keys())[i]] = md[list(d.keys())[i]]
-            elif isinstance(list(d.keys())[i], dict):
+            elif isinstance(list(d.keys())[i], dict):  # check if the corresponding value is a dictionary
                 self.modify(d[list(d.keys())[i]], md[list(d.keys())[i]])
             else:
                 if list(d.keys())[i] in list(md.keys()):
