@@ -1,5 +1,5 @@
 import json
-from StorefrontConfig import StorefrontConfig
+from storefrontconfig import StorefrontConfig
 
 
 class FileController:

@@ -1,4 +1,4 @@
-from FileController import FileController
+from filecontroller import FileController
 import time
 
 modify_data = {
@@ -31,8 +31,8 @@ modify_data = {
   }
 }
 
-
-file_controller = FileController()
-config = file_controller.read_file("../input/data.json")
-config.update(modify_data)
-file_controller.write_file(config, "../input/result.json")
+if "__name__" == "__main__":
+    file_controller = FileController()
+    config = file_controller.read_file("../input/data.json")
+    config.update(modify_data)
+    file_controller.write_file(config, "../input/result.json")
