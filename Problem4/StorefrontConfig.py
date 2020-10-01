@@ -10,7 +10,9 @@ class StorefrontConfig:
                 elif isinstance(d.get(key), dict):
                     self.modify(d[key], md[key])
                 else:
-                    d[key] = md[key]
+                    pass
+            else:
+                d[key] = md[key]
 
     def update(self, modify_data):
         self.modify(self.data, modify_data)
