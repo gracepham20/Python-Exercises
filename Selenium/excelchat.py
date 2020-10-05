@@ -9,8 +9,7 @@ class ExcelChat:
 
     def open_site(self):
         baseUrl = "https://www.got-it.io/solutions/excel-chat/"
-        binary = FirefoxBinary("C:\\Program Files\\Mozilla Firefox\\firefox.exe")
-        self.driver = webdriver.Firefox(firefox_binary=binary)
+        self.driver = webdriver.Chrome()
         self.driver.maximize_window()
         self.driver.get(baseUrl)
 
@@ -34,14 +33,12 @@ class ExcelChat:
         self.locate_pricing()
 
     def login_fill(self):
-
         email = self.driver.find_element(By.CSS_SELECTOR, "input[name='email']")
         password = self.driver.find_element(By.CSS_SELECTOR, "input[name='password']")
 
         return email, password
 
     def check_balance(self):
-
         # locate to homepage
         self.driver.get("https://www.got-it.io/solutions/excel-chat/home")
 
@@ -78,7 +75,6 @@ class ExcelChat:
         self.cardnumber_fill()
 
     def cardnumber_fill(self):
-
         self.driver.switch_to.frame("braintree-hosted-field-number")
         time.sleep(2)
         card_no = self.driver.find_element(By.CSS_SELECTOR, "input[name='credit-card-number']")
@@ -125,7 +121,6 @@ class ExcelChat:
         self.submit_payment()
 
     def submit_payment(self):
-
         pay_now = self.driver.find_element(By.CSS_SELECTOR, ".u-flex > button:nth-child(1)")
         pay_now.click()
 
