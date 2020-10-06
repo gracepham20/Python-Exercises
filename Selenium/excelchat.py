@@ -88,7 +88,8 @@ class ExcelChat:
         self.driver.find_element(By.CSS_SELECTOR, "#pricing-navlink-landing").click()
 
         WebDriverWait(self.driver, 50).until(
-            EC.element_to_be_clickable((By.CSS_SELECTOR, ".gi-coverPricing-Inner--Individuals > div > div:nth-child(1) > div > .gi-pricingItem-Button > button")))
+            EC.element_to_be_clickable((By.CSS_SELECTOR, ".gi-coverPricing-Inner--Individuals > div > div:nth-child(1) "
+                                                         "> div > .gi-pricingItem-Button > button")))
         # choose first pricing option
         self.driver.find_element(By.CSS_SELECTOR, ".gi-coverPricing-Inner--Individuals > div > div:nth-child(1) "
                                                   "> div > .gi-pricingItem-Button > button").click()
