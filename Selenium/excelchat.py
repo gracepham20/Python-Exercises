@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
-from fileinput import FileInput
+from Selenium.fileinput import FileInput
 
 
 class ExcelChat:
@@ -12,51 +12,52 @@ class ExcelChat:
 
     def login(self):
         # open site
-        self.driver.maximize_window()
         self.driver.get(FileInput.baseUrl)
 
         # click on log in option
-        self.driver.find_element(By.ID, "test-login-button").click()
-        time.sleep(2)
+        self.driver.find_element(By.ID, FileInput.login_option_CSS).click()
+
+        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, FileInput.
+                                                                             modal_login_header_CSS)))
 
         # fill in email and password
-        self.driver.find_element(By.CSS_SELECTOR, "input[name='email']").send_keys(FileInput.login_email)
-        self.driver.find_element(By.CSS_SELECTOR, "input[name='password']").send_keys(FileInput.login_pass)
+        self.driver.find_element(By.CSS_SELECTOR, FileInput.login_email_CSS).send_keys(FileInput.login_email)
+        self.driver.find_element(By.CSS_SELECTOR, FileInput.login_pass_CSS).send_keys(FileInput.login_pass)
 
         # log in
-        self.driver.find_element(By.CSS_SELECTOR, "button#login-button").click()
+        self.driver.find_element(By.CSS_SELECTOR, FileInput.login_button_CSS).click()
 
-        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#test-session-balance"
-                                                                                              "-header-button")))
+        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, FileInput.
+                                                                             session_balance_button_CSS)))
 
         # check session balance
-        self.check_balance()
+        self.balance = self.check_balance()
 
         # choose pricing tab
-        self.pricing()
+        self.purchase_plan()
 
     def card(self):
         # fill card number
-        self.card_fill(FileInput.card_no_iframe, FileInput.card_no_CSS, FileInput.card_no)
+        self.fill_card(FileInput.card_no_iframe, FileInput.card_no_CSS, FileInput.card_no)
 
         # fill card number
-        self.card_fill(FileInput.expiration_date_iframe, FileInput.expiration_date_CSS, FileInput.expiration_date)
+        self.fill_card(FileInput.expiration_date_iframe, FileInput.expiration_date_CSS, FileInput.expiration_date)
 
         # fill CVV
-        self.card_fill(FileInput.cvv_iframe, FileInput.cvv_CSS, FileInput.cvv)
+        self.fill_card(FileInput.cvv_iframe, FileInput.cvv_CSS, FileInput.cvv)
 
         # fill postal code
-        self.card_fill(FileInput.postal_iframe, FileInput.postal_CSS, FileInput.postal)
+        self.fill_card(FileInput.postal_iframe, FileInput.postal_CSS, FileInput.postal)
 
-        pay_now = self.driver.find_element(By.CSS_SELECTOR, "#modal-payment-subscription-engine > div > div >"
-                                                            " .modal-footer > div > button")
+        pay_now = self.driver.find_element(By.CSS_SELECTOR, FileInput.pay_now_CSS)
         pay_now.click()
 
         # check session balance
         time.sleep(15)
-        self.check_balance()
+        balance_after_purchased = self.check_balance()
+        assert self.balance < balance_after_purchased, "Purchase has not been complete!"
 
-    def card_fill(self, iframe, element, keys):
+    def fill_card(self, iframe, element, keys):
         self.driver.switch_to.frame(iframe)
 
         WebDriverWait(self.driver, 20).until(
@@ -67,42 +68,44 @@ class ExcelChat:
 
         # Switch back to the parent frame
         self.driver.switch_to.default_content()
-        time.sleep(2)
+
+        WebDriverWait(self.driver, 3).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, ".braintree-card.braintree-form.braintree-sheet")))
 
     def check_balance(self):
         # locate to homepage
         self.driver.get(FileInput.home_page)
 
         WebDriverWait(self.driver, 10).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, "#test-session-balance-header-button > strong")))
+            EC.presence_of_element_located((By.CSS_SELECTOR, FileInput.balance_value_button_CSS)))
 
-        balance = self.driver.find_element(By.CSS_SELECTOR, "#test-session-balance-header-button > strong").text
+        balance = self.driver.find_element(By.CSS_SELECTOR, FileInput.balance_value_button_CSS).text
 
         # print number of session balance
         print(f"Number of session balance is {balance}")
+        return balance
 
-    def pricing(self):
+    def purchase_plan(self):
         WebDriverWait(self.driver, 20).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, "#pricing-navlink-landing")))
+            EC.presence_of_element_located((By.CSS_SELECTOR, FileInput.pricing_tab_CSS)))
         # choose Pricing tab
-        self.driver.find_element(By.CSS_SELECTOR, "#pricing-navlink-landing").click()
+        self.driver.find_element(By.CSS_SELECTOR, FileInput.pricing_tab_CSS).click()
 
-        WebDriverWait(self.driver, 50).until(
-            EC.element_to_be_clickable((By.CSS_SELECTOR, ".gi-coverPricing-Inner--Individuals > div > div:nth-child(1) "
-                                                         "> div > .gi-pricingItem-Button > button")))
+        WebDriverWait(self.driver, 20).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, FileInput.option1_button_CSS)))
         # choose first pricing option
-        self.driver.find_element(By.CSS_SELECTOR, ".gi-coverPricing-Inner--Individuals > div > div:nth-child(1) "
-                                                  "> div > .gi-pricingItem-Button > button").click()
+        self.driver.find_element(By.CSS_SELECTOR, FileInput.option1_button_CSS).click()
 
         WebDriverWait(self.driver, 50).until(
-            EC.element_to_be_clickable((By.CSS_SELECTOR, "div.braintree-option:nth-child(1)")))
+            EC.element_to_be_clickable((By.CSS_SELECTOR, FileInput.pay_by_card_CSS)))
         # choose option to pay by card
-        self.driver.find_element(By.CSS_SELECTOR, "div.braintree-option:nth-child(1)").click()
+        self.driver.find_element(By.CSS_SELECTOR, FileInput.pay_by_card_CSS).click()
 
         self.card()
 
 
 if __name__ == '__main__':
     driver = webdriver.Chrome("drivers/chromedriver")
+    driver.maximize_window()
     test = ExcelChat(driver)
     test.login()
