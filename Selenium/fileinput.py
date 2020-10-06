@@ -1,6 +1,7 @@
 class FileInput:
 
     baseUrl = "https://www.got-it.io/solutions/excel-chat/"
+    home_page = "https://www.got-it.io/solutions/excel-chat/home"
     login_email = "grace+ec3@gotitapp.co"
     login_pass = "Grace123"
 

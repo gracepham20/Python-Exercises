@@ -71,7 +71,7 @@ class ExcelChat:
 
     def check_balance(self):
         # locate to homepage
-        self.driver.get("https://www.got-it.io/solutions/excel-chat/home")
+        self.driver.get(FileInput.home_page)
 
         WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, "#test-session-balance-header-button > strong")))
