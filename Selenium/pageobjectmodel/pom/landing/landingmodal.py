@@ -22,3 +22,5 @@ class LandingModal(BaseModal):
 
     def click_login_button(self):
         self.click_on(By.CSS_SELECTOR, LandingModal.login_button_CSS)
+
+

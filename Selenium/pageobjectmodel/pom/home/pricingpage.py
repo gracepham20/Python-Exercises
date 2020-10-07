@@ -9,3 +9,4 @@ class PricingPage(BasePage):
 
     def click_first_pricing_plan(self):
         self.click_on(By.CSS_SELECTOR, PricingPage.option1_button_CSS, 20)
+

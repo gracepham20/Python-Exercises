@@ -1,4 +1,3 @@
-from driverapi import DriverAPI
 from basepageobject import BasePageObject
 
 

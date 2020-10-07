@@ -10,4 +10,3 @@ class LandingPage(BasePage):
     def click_login_button(self):
         self.click_on(By.CSS_SELECTOR, LandingPage.login_option_CSS)
 
-

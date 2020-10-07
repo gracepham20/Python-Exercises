@@ -59,3 +59,4 @@ class PaymentMethodModal(BaseModal):
 
     def submit_payment(self):
         self.click_on(By.CSS_SELECTOR, PaymentMethodModal.pay_now_CSS, 5)
+

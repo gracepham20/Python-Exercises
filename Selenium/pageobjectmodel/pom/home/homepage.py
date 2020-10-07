@@ -18,3 +18,4 @@ class HomePage(BasePage):
 
     def click_pricing_tab(self):
         self.click_on(By.CSS_SELECTOR, HomePage.pricing_tab_CSS, 20)
+
