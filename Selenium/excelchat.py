@@ -86,22 +86,19 @@ class ExcelChat:
         return balance_value
 
     def locate_pricing(self):
-        WebDriverWait(self.driver, 20).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, FileInput.pricing_tab_CSS)))
         # choose Pricing tab
-        self.driver.find_element(By.CSS_SELECTOR, FileInput.pricing_tab_CSS).click()
-
         WebDriverWait(self.driver, 20).until(
-            EC.element_to_be_clickable((By.CSS_SELECTOR, FileInput.option1_button_CSS)))
+            EC.presence_of_element_located((By.CSS_SELECTOR, FileInput.pricing_tab_CSS))).click()
+
         # choose first pricing option
-        self.driver.find_element(By.CSS_SELECTOR, FileInput.option1_button_CSS).click()
+        WebDriverWait(self.driver, 20).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, FileInput.option1_button_CSS))).click()
 
-        WebDriverWait(self.driver, 50).until(
-            EC.element_to_be_clickable((By.CSS_SELECTOR, FileInput.pay_by_card_CSS)))
         # choose option to pay by card
-        self.driver.find_element(By.CSS_SELECTOR, FileInput.pay_by_card_CSS).click()
+        WebDriverWait(self.driver, 50).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, FileInput.pay_by_card_CSS))).click()
 
-        self.card()
+        self.purchase()
 
 
 if __name__ == '__main__':
