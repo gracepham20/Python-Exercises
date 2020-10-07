@@ -74,6 +74,8 @@ class ExcelChat:
         WebDriverWait(self.driver, 3).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, ".braintree-card.braintree-form.braintree-sheet")))
 
+        # .braintree-large-button (Choose another way to pay option)
+
     def check_balance(self):
         # locate to homepage
         self.driver.get(FileInput.home_page)

@@ -13,14 +13,18 @@ class FileInput:
 
     # CSS selector
     login_option_CSS = "test-login-button"
+
     modal_login_header_CSS = "#modal-login > div > div > div.modal-header > h4"
     login_email_CSS = "input[name='email']"
-    pricing_tab_CSS = "#pricing-navlink-landing"
     login_pass_CSS = "input[name='password']"
     login_button_CSS = "button#login-button"
+
     session_balance_button_CSS = "#test-session-balance-header-button"
     balance_value_button_CSS = "#test-session-balance-header-button > strong"
+    pricing_tab_CSS = "#pricing-navlink-landing"
+
     option1_button_CSS = ".gi-coverPricing-Inner--Individuals div:nth-child(1) > div > .gi-pricingItem-Button button"
+
     pay_by_card_CSS = "div.braintree-option:nth-child(1)"
     card_no_CSS = "input[name='credit-card-number']"
     expiration_date_CSS = "input[name='expiration']"
