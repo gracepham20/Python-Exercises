@@ -57,7 +57,7 @@ class ExcelChat:
         balance_after_purchased = self.check_balance()
         assert self.balance < balance_after_purchased, "Purchase has not been complete!"
 
-    def locate_pricing(self, iframe, element, keys):
+    def fill_card(self, iframe, element, keys):
         self.driver.switch_to.frame(iframe)
 
         WebDriverWait(self.driver, 20).until(
@@ -85,7 +85,7 @@ class ExcelChat:
         print(f"Number of session balance is {balance_value}")
         return balance_value
 
-    def purchase_plan(self):
+    def locate_pricing(self):
         WebDriverWait(self.driver, 20).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, FileInput.pricing_tab_CSS)))
         # choose Pricing tab
