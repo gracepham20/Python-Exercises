@@ -20,8 +20,7 @@ class FileInput:
     login_button_CSS = "button#login-button"
     session_balance_button_CSS = "#test-session-balance-header-button"
     balance_value_button_CSS = "#test-session-balance-header-button > strong"
-    option1_button_CSS = ".gi-coverPricing-Inner--Individuals > div > div:nth-child(1) > div " \
-                         "> .gi-pricingItem-Button > button"
+    option1_button_CSS = ".gi-coverPricing-Inner--Individuals div:nth-child(1) > div > .gi-pricingItem-Button button"
     pay_by_card_CSS = "div.braintree-option:nth-child(1)"
     card_no_CSS = "input[name='credit-card-number']"
     expiration_date_CSS = "input[name='expiration']"
