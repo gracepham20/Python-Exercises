@@ -53,7 +53,9 @@ class ExcelChat:
         pay_now.click()
 
         # check session balance
-        time.sleep(15)
+        WebDriverWait(self.driver, 20).until(
+            EC.invisibility_of_element_located((By.CSS_SELECTOR, FileInput.purchase_successful_modal_CSS)))
+
         balance_after_purchased = self.check_balance()
         assert self.balance < balance_after_purchased, "Purchase has not been complete!"
 

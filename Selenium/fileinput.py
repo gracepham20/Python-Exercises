@@ -27,7 +27,8 @@ class FileInput:
     expiration_date_CSS = "input[name='expiration']"
     cvv_CSS = "input[name='cvv']"
     postal_CSS = "#postal-code"
-    pay_now_CSS = "#modal-payment-subscription-engine > div > div > .modal-footer > div > button"
+    pay_now_CSS = "#modal-payment-subscription-engine .modal-footer button"
+    purchase_successful_modal_CSS = ".modal-content"
 
     # iframe id
     card_no_iframe = "braintree-hosted-field-number"
