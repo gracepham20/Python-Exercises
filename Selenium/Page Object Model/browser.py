@@ -1,15 +1,18 @@
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.options import Options as COptions
+from selenium.webdriver.firefox.options import Options as FOptions
 
 
 def get_browser_by_type():
     browser = input("Enter browser using:")
-    options = Options()
-    options.headless = True
+
     if browser == "Chrome":
+        options = COptions()
+        options.headless = True
         driver = webdriver.Chrome("drivers/chromedriver", options=options)
     elif browser == "Firefox":
-        webdriver.Firefox("drivers/geckodriver", options=options)
+        options = FOptions()
+        options.headless = True
+        driver = webdriver.Firefox("drivers/geckodriver", options=options)
     elif browser == "Safari":
-        webdriver.Safari()  # ??
-
+        driver = webdriver.Safari()
