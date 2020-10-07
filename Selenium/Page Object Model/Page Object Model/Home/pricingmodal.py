@@ -4,8 +4,9 @@ from config import UserInformation
 
 class PricingModalElement:
     # CSS Selector
+    pricing_modal =".braintree-card.braintree-form.braintree-sheet"
     pay_by_card_CSS = "div.braintree-option:nth-child(1)"
-    card_no_CSS = "input[name='credit-card-number']"
+    card_no_CSS = "inmodalput[name='credit-card-number']"
     expiration_date_CSS = "input[name='expiration']"
     cvv_CSS = "input[name='cvv']"
     postal_CSS = "#postal-code"
@@ -28,6 +29,9 @@ class PricingModal(BaseModal):
     def switch_to_iframe(self, iframe_id):
         self.switch_iframe(iframe_id)
 
+    def switch_to_default_content(self):
+        self.switch_default_content(PricingModalElement.pricing_modal)
+
     def enter_information(self):
         self.enter_cardno(PricingModalElement.card_no_CSS, UserInformation.card_no)
         self.enter_expiration(PricingModalElement.expiration_date_CSS, UserInformation.expiration_date)
@@ -37,18 +41,22 @@ class PricingModal(BaseModal):
     def enter_cardno(self, element_css, content):
         self.switch_to_iframe(PricingModalElement.card_no_iframe)
         self.send_data(element_css, content)
+        self.switch_to_default_content()
 
     def enter_expiration(self, element_css, content):
         self.switch_to_iframe(PricingModalElement.card_no_iframe)
         self.send_data(element_css, content)
+        self.switch_to_default_content()
 
     def enter_cvv(self, element_css, content):
         self.switch_to_iframe(PricingModalElement.card_no_iframe)
         self.send_data(element_css, content)
+        self.switch_to_default_content()
 
     def enter_postalcode(self, element_css, content):
         self.switch_to_iframe(PricingModalElement.card_no_iframe)
         self.send_data(element_css, content)
+        self.switch_to_default_content()
 
     def submit_payment(self):
         self.click_on(PricingModalElement.pay_now_CSS)
