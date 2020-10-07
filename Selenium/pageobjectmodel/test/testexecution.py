@@ -1,4 +1,4 @@
-from browser import get_browser_by_type
+from browser import Browser
 from config import Config
 from landingpage import *
 from landingmodal import *
@@ -62,7 +62,7 @@ class TestExecution:
 
 
 if __name__ == "__main__":
-    driver = get_browser_by_type()
+    driver = Browser.get_browser_by_type()
     driver.maximize_window()
     test = TestExecution(driver)
     test.test_purchase_session()
