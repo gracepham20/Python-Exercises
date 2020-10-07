@@ -8,7 +8,7 @@ class BaseModal(BasePageObject):
 
     def __init__(self, x: DriverAPI):
         self.driver = x
-        assert self.is_present() is not False, "Modal Invalid"
+        assert self.is_present() is True, "Modal Invalid"
 
     def is_present(self):
         if self.driver.current_url() != BaseModal.expected_id:
