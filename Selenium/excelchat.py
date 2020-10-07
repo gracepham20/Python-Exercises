@@ -104,6 +104,8 @@ class ExcelChat:
 
         self.purchase()
 
+        driver.current_url
+
 
 if __name__ == '__main__':
     driver = webdriver.Chrome("drivers/chromedriver")
