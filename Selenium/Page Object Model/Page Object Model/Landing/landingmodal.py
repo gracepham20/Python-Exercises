@@ -10,7 +10,6 @@ class LandingModalElement:
 
 
 class LandingModal(BaseModal):
-
     expected_id = "modal-login"
 
     def wait_for_login_modal(self):

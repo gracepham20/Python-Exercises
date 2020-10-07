@@ -18,6 +18,7 @@ class PricingModalElement:
     cvv_iframe = "braintree-hosted-field-cvv"
     postal_iframe = "braintree-hosted-field-postalCode"
 
+
 class PricingModal(BaseModal):
     expected_id = "modal-payment-subscription-engine"
 
