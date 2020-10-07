@@ -7,7 +7,6 @@ class LandingPageElement:
 
 
 class LandingPage(BasePage):
-
     expected_url = "https://www.got-it.io/solutions/excel-chat/"
 
     def click_login_button(self):

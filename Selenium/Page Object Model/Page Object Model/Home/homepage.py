@@ -9,7 +9,6 @@ class HomePageElement:
 
 
 class HomePage(BasePage):
-
     expected_url = "https://www.got-it.io/solutions/excel-chat/home"
 
     def wait_for_session_balance_button(self):

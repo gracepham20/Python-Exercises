@@ -7,6 +7,7 @@ class PricingPageElement:
 
 
 class PricingPage(BasePage):
+    expected_url = "https://www.got-it.io/solutions/excel-chat/pricing/personal"
 
     def click_first_pricing_plan(self):
         self.click_on(PricingPageElement.option1_button_CSS)
