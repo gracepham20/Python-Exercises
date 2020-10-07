@@ -32,12 +32,6 @@ class PricingModal(BaseModal):
     def switch_to_default_content(self):
         self.switch_default_content(PricingModalElement.pricing_modal)
 
-    def enter_information(self):
-        self.enter_cardno(PricingModalElement.card_no_CSS, Config.card_no)
-        self.enter_expiration(PricingModalElement.expiration_date_CSS, Config.expiration_date)
-        self.enter_cvv(PricingModalElement.cvv_CSS, Config.cvv)
-        self.enter_postalcode(PricingModalElement.postal_CSS, Config.postal)
-
     def enter_cardno(self, element_css, content):
         self.switch_to_iframe(PricingModalElement.card_no_iframe)
         self.send_data(element_css, content)
@@ -57,6 +51,12 @@ class PricingModal(BaseModal):
         self.switch_to_iframe(PricingModalElement.card_no_iframe)
         self.send_data(element_css, content)
         self.switch_to_default_content()
+
+    def enter_information(self):
+        self.enter_cardno(PricingModalElement.card_no_CSS, Config.card_no)
+        self.enter_expiration(PricingModalElement.expiration_date_CSS, Config.expiration_date)
+        self.enter_cvv(PricingModalElement.cvv_CSS, Config.cvv)
+        self.enter_postalcode(PricingModalElement.postal_CSS, Config.postal)
 
     def submit_payment(self):
         self.click_on(PricingModalElement.pay_now_CSS)
