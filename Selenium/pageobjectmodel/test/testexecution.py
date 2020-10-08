@@ -7,7 +7,6 @@ from Selenium.pageobjectmodel.pom.home.pricingpage import *
 from Selenium.pageobjectmodel.pom.home.paymentmethod import *
 from Selenium.pageobjectmodel.driver_api import DriverAPI
 from Selenium.pageobjectmodel.browsertype import BrowserType
-from Selenium.pageobjectmodel.driver_api import DriverAPI
 
 
 class TestExecution:
@@ -46,8 +45,8 @@ class TestExecution:
         return hp.get_session_balance()
 
     def choose_a_plan(self):
+        # locate to pricing page
         hp = HomePage(self.driver)
-        # click on pricing tab
         hp.click_pricing_tab()
         # click on first pricing option
         pp = PricingPage(self.driver)
@@ -64,7 +63,7 @@ class TestExecution:
 
     def relocate_to_homepage(self):
         # relocate to homepage
-        self.driver.get_link(Config.homepageUrl)
+        self.driver.get(Config.homepageUrl)
 
     @staticmethod
     def compare_balance(balance_before, balance_after):

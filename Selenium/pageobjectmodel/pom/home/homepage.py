@@ -1,5 +1,4 @@
 from Selenium.pageobjectmodel.pom.base.base_page import BasePage
-from selenium.webdriver.common.by import By
 from Selenium.pageobjectmodel.test.config import Config
 
 
@@ -18,5 +17,5 @@ class HomePage(BasePage):
         return self.driver.get_text(self.balance_value_button_CSS, 20)
 
     def click_pricing_tab(self):
-        self.driver.click_on(xself.pricing_tab_CSS, 20)
+        self.driver.click_on(self.pricing_tab_CSS, 20)
 
