@@ -5,7 +5,7 @@ from pageobjectmodel.driver_api import DriverAPI
 
 
 class LandingPage(BasePage):
-    login_option_CSS = "test-login-button"
+    login_option_CSS = "#test-login-button"
 
     expected_url = Config.baseUrl
 

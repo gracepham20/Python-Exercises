@@ -8,7 +8,7 @@ class LoginModal(BaseModal):
     login_pass_CSS = "input[name='password']"
     login_button_CSS = "button#login-button"
 
-    expected_id = "modal-login"
+    expected_id = "#modal-login"
 
     def enter_login_email(self):
         self.driver.send_data(self.login_email_CSS, Config.login_email)

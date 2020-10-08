@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
-from Selenium.fileinput import FileInput
+from fileinput import FileInput
 
 
 class ExcelChat:
@@ -107,14 +107,17 @@ class ExcelChat:
         self.purchase()
 
     def check_card_availability(self):
-        WebDriverWait(self.driver, 50).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, ".modal - content")))
+        try:
+            WebDriverWait(self.driver, 50).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, ".braintree-method__label")))
 
-        card_available = self.driver.find_element(By.CSS_SELECTOR, ".braintree - method__label")
+            card_available = self.driver.find_element(By.CSS_SELECTOR, ".braintree-method__label")
+        except:
+            pass
 
         if card_available is not None:
             WebDriverWait(self.driver, 20).until(
-                EC.element_to_be_clickable((By.CSS_SELECTOR, ".braintree - large - button"))).click()
+                EC.element_to_be_clickable((By.CSS_SELECTOR, ".braintree-large-button"))).click()
         else:
             pass
 

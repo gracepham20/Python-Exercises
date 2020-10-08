@@ -1,6 +1,7 @@
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
+from selenium import webdriver
 
 
 class DriverAPI:
@@ -12,7 +13,7 @@ class DriverAPI:
         self.driver.get(url)
         self.driver.maximize_window()
 
-    def click_on(self, element_method, method_used=By.CSS_SELECTOR, timeout=30):
+    def click_on(self, element_method, method_used=By.CSS_SELECTOR, timeout=10):
         element = WebDriverWait(self.driver, timeout).until(EC.element_to_be_clickable((method_used, element_method)))
         element.click()
         return element
@@ -25,8 +26,9 @@ class DriverAPI:
     def find(self, element_method, method_used=By.CSS_SELECTOR, timeout=10):
         try:
             element = WebDriverWait(self.driver, timeout).until(
-                EC.presence_of_element_located((element_method, method_used)))
-            return element.driver.find_element(method_used, element_method)
+                EC.presence_of_element_located((method_used, element_method)))
+
+            return element
         except:
             return None
 
@@ -48,3 +50,9 @@ class DriverAPI:
 
     def get_current_url(self):
         return self.driver.current_url
+
+    def quit(self):
+        self.driver.quit()
+
+    def find_list_element(self, element_css):
+        return self.driver.find_elements(element_css)
