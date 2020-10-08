@@ -1,4 +1,4 @@
-from base_page import BasePage
+from Selenium.pageobjectmodel.pom.base.base_page import BasePage
 from selenium.webdriver.common.by import By
 
 
@@ -8,5 +8,5 @@ class PricingPage(BasePage):
     expected_url = "https://www.got-it.io/solutions/excel-chat/pricing/personal"
 
     def click_first_pricing_plan(self):
-        self.click_on(By.CSS_SELECTOR, PricingPage.option1_button_CSS, 20)
+        self.driver.click_on(By.CSS_SELECTOR, PricingPage.option1_button_CSS, 20)
 

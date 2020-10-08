@@ -1,10 +1,11 @@
-from browser import Browser
-from config import Config
-from landingpage import *
-from landingmodal import *
-from homepage import *
-from pricingpage import *
-from pricingmodal import *
+from Selenium.pageobjectmodel.browser import Browser
+from Selenium.pageobjectmodel.test.config import Config
+from Selenium.pageobjectmodel.pom.landing.landingpage import LandingPage
+from Selenium.pageobjectmodel.pom.landing.landingmodal import LandingModal
+from Selenium.pageobjectmodel.pom.home.homepage import *
+from Selenium.pageobjectmodel.pom.home.pricingpage import *
+from Selenium.pageobjectmodel.pom.home.paymentmethod import *
+
 
 class TestExecution:
     def __init__(self, driver):
@@ -21,40 +22,40 @@ class TestExecution:
 
     def account_login(self):
         # locate to landing page
-        self.get(Config.baseUrl)
+        self.driver.get(Config.baseUrl)
         # click on log in button on landing page
-        self.LandingPage.click_login_button()
+        self.driver.click_login_button()
         # wait for login modal to load
-        self.LandingModal.wait_for_login_modal()
+        self.driver.wait_for_login_modal()
         # fill in login email and password
-        self.LandingModal.enter_login_email()
-        self.LandingModal.enter_login_password()
+        self.driver.enter_login_email()
+        self.driver.enter_login_password()
         # click login button
-        self.LandingModal.click_login_button()
+        self.driver.click_to_login()
 
     def check_balance(self):
         # wait for session balance on homepage to present
-        self.HomePage.wait_for_session_balance_button()
+        self.driver.wait_for_session_balance_button()
         # check session balance
-        return self.HomePage.get_session_balance()
+        return self.driver.get_session_balance()
 
     def choose_a_plan(self):
         # click on pricing tab
-        self.HomePage.click_pricing_tab()
+        self.driver.click_pricing_tab()
         # click on first pricing option
-        self.PricingPage.click_first_pricing_plan()
+        self.driver.click_first_pricing_plan()
         # click on pay by card option
 
     def make_payment(self):
-        self.PricingModal.click_option_paybycard()
+        self.driver.click_option_paybycard()
         # enter payment information
-        self.PricingModal.enter_information()
+        self.driver.enter_information()
         # submit payment
-        self.PricingModal.submit_payment()
+        self.driver.submit_payment()
 
     def relocate_to_homepage(self):
         # relocate to homepage
-        self.get_link(Config.homepageURL)
+        self.driver.get_link(Config.homepageURL)
 
     @staticmethod
     def compare_balance(balance_before, balance_after):

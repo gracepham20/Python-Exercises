@@ -1,5 +1,5 @@
-from basemodal import BaseModal
-from Test.config import Config
+from Selenium.pageobjectmodel.pom.base.base_modal import BaseModal
+from Selenium.pageobjectmodel.test.config import Config
 from selenium.webdriver.common.by import By
 
 
@@ -12,15 +12,15 @@ class LandingModal(BaseModal):
     expected_id = "modal-login"
 
     def wait_for_login_modal(self):
-        return self.DriverAPI.is_shown_on_page(By.CSS_SELECTOR, LandingModal.modal_login_header_CSS, 20)
+        return self.driver.is_present_on_page(By.CSS_SELECTOR, LandingModal.modal_login_header_CSS, 20)
 
     def enter_login_email(self):
-        self.send_data(By.CSS_SELECTOR, LandingModal.login_email_CSS, Config.login_email)
+        self.driver.send_data(By.CSS_SELECTOR, LandingModal.login_email_CSS, Config.login_email)
 
     def enter_login_password(self):
-        self.send_data(By.CSS_SELECTOR, LandingModal.login_pass_CSS, Config.login_pass)
+        self.driver.send_data(By.CSS_SELECTOR, LandingModal.login_pass_CSS, Config.login_pass)
 
-    def click_login_button(self):
-        self.click_on(By.CSS_SELECTOR, LandingModal.login_button_CSS)
+    def click_to_login(self):
+        self.driver.click_on(By.CSS_SELECTOR, LandingModal.login_button_CSS)
 
 

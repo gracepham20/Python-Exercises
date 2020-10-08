@@ -38,7 +38,7 @@ class DriverAPI:
         content = self.find(method_used, element_method, timeout)
         return content.text
 
-    def is_shown_on_page(self, method_used, element_method, timeout=0):
+    def is_present_on_page(self, method_used, element_method, timeout=0):
         if self.find(method_used, element_method, timeout) is not None:
             return True
         else:
