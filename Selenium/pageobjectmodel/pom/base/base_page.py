@@ -1,4 +1,4 @@
-from Selenium.pageobjectmodel.pom.base.base_po import BasePageObject
+from pageobjectmodel.pom.base.base_po import BasePageObject
 
 
 class BasePage(BasePageObject):

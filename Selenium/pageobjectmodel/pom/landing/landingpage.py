@@ -1,7 +1,7 @@
-from Selenium.pageobjectmodel.pom.base.base_page import BasePage
+from pageobjectmodel.pom.base.base_page import BasePage
 from selenium.webdriver.common.by import By
-from Selenium.pageobjectmodel.test.config import Config
-from Selenium.pageobjectmodel.driver_api import DriverAPI
+from pageobjectmodel.test.config import Config
+from pageobjectmodel.driver_api import DriverAPI
 
 
 class LandingPage(BasePage):
@@ -10,5 +10,4 @@ class LandingPage(BasePage):
     expected_url = Config.baseUrl
 
     def click_login_button(self):
-        self.driver.click_on(self.login_option_CSS, By.CSS_SELECTOR, 30)
-
+        self.driver.click_on(self.login_option_CSS)

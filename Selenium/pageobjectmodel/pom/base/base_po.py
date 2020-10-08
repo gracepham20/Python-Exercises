@@ -1,4 +1,4 @@
-from Selenium.pageobjectmodel.driver_api import DriverAPI
+from pageobjectmodel.driver_api import DriverAPI
 
 
 class BasePageObject:

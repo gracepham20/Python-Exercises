@@ -1,5 +1,5 @@
-from Selenium.pageobjectmodel.pom.base.base_page import BasePage
-from Selenium.pageobjectmodel.test.config import Config
+from pageobjectmodel.pom.base.base_page import BasePage
+from pageobjectmodel.test.config import Config
 
 
 class HomePage(BasePage):
@@ -11,7 +11,7 @@ class HomePage(BasePage):
     expected_url = Config.homepageUrl
 
     def is_present(self):
-        return self.driver.is_shown_on_page(self.session_balance_button_CSS, 20)
+        return self.driver.is_present_on_page(self.session_balance_button_CSS, 20)
 
     def get_session_balance(self):
         return self.driver.get_text(self.balance_value_button_CSS, 20)

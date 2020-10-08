@@ -25,7 +25,7 @@ class DriverAPI:
     def find(self, element_method, method_used=By.CSS_SELECTOR, timeout=10):
         try:
             element = WebDriverWait(self.driver, timeout).until(
-                EC.presence_of_element_located((element_method, method_used,)))
+                EC.presence_of_element_located((element_method, method_used)))
             return element.driver.find_element(method_used, element_method)
         except:
             return None

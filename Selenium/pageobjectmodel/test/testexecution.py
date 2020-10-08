@@ -1,12 +1,12 @@
-from Selenium.pageobjectmodel.browser import get_browser_by_type
-from Selenium.pageobjectmodel.test.config import Config
-from Selenium.pageobjectmodel.pom.landing.landingpage import LandingPage
-from Selenium.pageobjectmodel.pom.landing.loginmodal import LoginModal
-from Selenium.pageobjectmodel.pom.home.homepage import *
-from Selenium.pageobjectmodel.pom.home.pricingpage import *
-from Selenium.pageobjectmodel.pom.home.paymentmethod import *
-from Selenium.pageobjectmodel.driver_api import DriverAPI
-from Selenium.pageobjectmodel.browsertype import BrowserType
+from pageobjectmodel.browser import get_browser_by_type
+from pageobjectmodel.test.config import Config
+from pageobjectmodel.pom.landing.landingpage import LandingPage
+from pageobjectmodel.pom.landing.loginmodal import LoginModal
+from pageobjectmodel.pom.home.homepage import HomePage
+from pageobjectmodel.pom.home.pricingpage import PricingPage
+from pageobjectmodel.pom.home.paymentmethod import PaymentMethodModal
+from pageobjectmodel.driver_api import DriverAPI
+from pageobjectmodel.browsertype import BrowserType
 
 
 class TestExecution:

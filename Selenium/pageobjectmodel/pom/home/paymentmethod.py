@@ -1,5 +1,5 @@
-from Selenium.pageobjectmodel.pom.base.base_modal import BaseModal
-from Selenium.pageobjectmodel.test.config import Config
+from pageobjectmodel.pom.base.base_modal import BaseModal
+from pageobjectmodel.test.config import Config
 
 
 class PaymentMethodModal(BaseModal):
