@@ -113,17 +113,13 @@ class ExcelChat:
 
             card_available = self.driver.find_element(By.CSS_SELECTOR, ".braintree-method__label")
         except:
-            pass
+            card_available = None
 
         if card_available is not None:
             WebDriverWait(self.driver, 20).until(
                 EC.element_to_be_clickable((By.CSS_SELECTOR, ".braintree-large-button"))).click()
         else:
             pass
-
-
-
-
 
 
 if __name__ == '__main__':

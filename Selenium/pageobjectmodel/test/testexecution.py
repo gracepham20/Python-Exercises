@@ -8,6 +8,7 @@ from pageobjectmodel.pom.home.pricingpage import PricingPage
 from pageobjectmodel.pom.home.paymentmethod import PaymentMethodModal
 from pageobjectmodel.driver_api import DriverAPI
 from pageobjectmodel.browsertype import BrowserType
+import time
 
 
 class TestExecution:
@@ -51,42 +52,40 @@ class TestExecution:
         hp.click_pricing_tab()
         # click on first pricing option
         pp = PricingPage(self.driver)
+        # choose pricing plan
         pp.choose_pricing_plan()
         # click on pay by card option
 
     def make_payment(self):
         pm = PaymentMethodModal(self.driver)
-        # TestExecution.check_card_availability()
+
+        # check if past purchase method option is available
+        try:
+            card_available = pm.driver.find(PaymentMethodModal.available_card, By.CSS_SELECTOR, timeout=40)
+        except:
+            card_available = None
+
+        if card_available is not None:
+            pm.driver.click_on(PaymentMethodModal.pay_by_another_method_button, By.CSS_SELECTOR, 30)
+        else:
+            pass
+
         pm.click_option_paybycard()
         # enter payment information
         pm.enter_information()
         # submit payment
         pm.submit_payment()
 
+    def wait_for_purchase_confirmation(self):
+        return self.driver.wait_for_element(PaymentMethodModal.purchase_successful_modal_CSS, timeout=20)
+
     def relocate_to_homepage(self):
         # relocate to homepage
-        self.driver.get_link(Config.homepageUrl)
+        self.driver.relocate_to_url(Config.homepageUrl)
 
     @staticmethod
     def compare_balance(balance_before, balance_after):
-        if balance_before <= balance_after:
-            print("Fail")
-        else:
-            print("Yes")
-        #assert balance_before <= balance_after, "Payment Unsuccessful!"
-
-    def check_card_availability(self):
-
-        # check if past purchase method option is available
-        try:
-            card_available = self.driver.find(PaymentMethodModal.available_card, By.CSS_SELECTOR, timeout=50)
-        except:
-            card_available = None
-
-        if card_available is not None:
-            self.driver.click_on(PaymentMethodModal.pay_by_another_method_button, By.CSS_SELECTOR, 30)
-        else:
-            pass
+        assert balance_before <= balance_after, "Payment Unsuccessful!"
 
 
 if __name__ == "__main__":

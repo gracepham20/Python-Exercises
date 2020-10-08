@@ -9,5 +9,4 @@ class PricingPage(BasePage):
     expected_url = Config.pricingUrl
 
     def choose_pricing_plan(self):
-
-        self.driver.click_on(self.purchase_buttons_CSS, timeout=30)
+        self.driver.click_on(self.purchase_buttons_CSS, By.CSS_SELECTOR, 30)

@@ -1,7 +1,7 @@
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
-from selenium import webdriver
+import time
 
 
 class DriverAPI:
@@ -43,9 +43,10 @@ class DriverAPI:
         return content.text
 
     def is_present_on_page(self, element_method, method_used=By.CSS_SELECTOR, timeout=10):
-        if self.find(element_method, method_used, timeout) is not None:
+        try:
+            self.find(element_method, method_used, timeout)
             return True
-        else:
+        except:
             return False
 
     def get_current_url(self):
@@ -54,5 +55,19 @@ class DriverAPI:
     def quit(self):
         self.driver.quit()
 
-    def find_list_element(self, element_css):
-        return self.driver.find_elements(element_css)
+    def find_list_element(self, element_method, method_used=By.CSS_SELECTOR, timeout=10):
+        try:
+            WebDriverWait(self.driver, timeout).until(
+                EC.presence_of_element_located((method_used, element_method)))
+
+            return self.driver.find_elements(element_css)
+        except:
+            return None
+
+    def wait_for_element(self, element_method, method_used=By.CSS_SELECTOR, timeout=10):
+        return WebDriverWait(self.driver, timeout).until(
+            EC.presence_of_element_located((method_used, element_method)))
+
+    def relocate_to_url(self, url):
+        time.sleep(20)
+        self.driver.get(url)

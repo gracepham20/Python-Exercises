@@ -60,5 +60,3 @@ class PaymentMethodModal(BaseModal):
 
     def submit_payment(self):
         self.driver.click_on(self.pay_now_CSS, timeout=5)
-
-
