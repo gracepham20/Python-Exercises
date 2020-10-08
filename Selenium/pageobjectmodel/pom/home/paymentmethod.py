@@ -7,6 +7,8 @@ class PaymentMethodModal(BaseModal):
 
     # CSS Selector
     pricing_modal = ".braintree-card.braintree-form.braintree-sheet"
+    available_card = ".braintree - method__label"
+    pay_by_another_method_button = ".braintree - large - button"
     pay_by_card_CSS = "div.braintree-option:nth-child(1)"
     card_no_CSS = "inmodalput[name='credit-card-number']"
     expiration_date_CSS = "input[name='expiration']"

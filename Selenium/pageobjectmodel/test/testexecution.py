@@ -56,6 +56,7 @@ class TestExecution:
 
     def make_payment(self):
         pm = PaymentMethodModal(self.driver)
+        self.check_card_availability()
         pm.click_option_paybycard()
         # enter payment information
         pm.enter_information()
@@ -69,6 +70,16 @@ class TestExecution:
     @staticmethod
     def compare_balance(balance_before, balance_after):
         assert balance_before == balance_after, "Payment Unsuccessful!"
+
+    def check_card_availability(self):
+        self.driver.is_present_on_page(PaymentMethodModal.expected_id, By.CSS_SELECTOR, 50)
+
+        card_available = self.driver.find(PaymentMethodModal.available_card, By.CSS_SELECTOR, 20)
+
+        if card_available is not None:
+            self.driver.click_on(PaymentMethodModal.pay_by_another_method_button, By.CSS_SELECTOR, 30)
+        else:
+            pass
 
 
 if __name__ == "__main__":

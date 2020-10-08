@@ -12,7 +12,7 @@ class DriverAPI:
         self.driver.get(url)
         self.driver.maximize_window()
 
-    def click_on(self, element_method, method_used=By.CSS_SELECTOR, timeout=10):
+    def click_on(self, element_method, method_used=By.CSS_SELECTOR, timeout=30):
         element = WebDriverWait(self.driver, timeout).until(EC.element_to_be_clickable((method_used, element_method)))
         element.click()
         return element
