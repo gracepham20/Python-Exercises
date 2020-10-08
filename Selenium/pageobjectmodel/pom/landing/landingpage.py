@@ -1,12 +1,14 @@
 from Selenium.pageobjectmodel.pom.base.base_page import BasePage
 from selenium.webdriver.common.by import By
+from Selenium.pageobjectmodel.test.config import Config
+from Selenium.pageobjectmodel.driver_api import DriverAPI
 
 
 class LandingPage(BasePage):
     login_option_CSS = "test-login-button"
 
-    expected_url = "https://www.got-it.io/solutions/excel-chat/"
+    expected_url = Config.baseUrl
 
     def click_login_button(self):
-        self.driver.click_on(By.CSS_SELECTOR, LandingPage.login_option_CSS)
+        self.driver.click_on(self.login_option_CSS, By.CSS_SELECTOR, 30)
 

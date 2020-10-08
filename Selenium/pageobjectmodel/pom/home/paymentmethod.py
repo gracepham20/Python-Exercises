@@ -23,40 +23,41 @@ class PaymentMethodModal(BaseModal):
     postal_iframe = "braintree-hosted-field-postalCode"
 
     def click_option_paybycard(self):
-        self.driver.click_on(By.CSS_SELECTOR, PaymentMethodModal.pay_by_card_CSS, 50)
+        self.driver.click_on(self.pay_by_card_CSS, 50)
 
     def switch_to_iframe(self, iframe_id):
         self.driver.switch_iframe(iframe_id)
 
     def switch_to_default_content(self):
-        self.driver.switch_default_content(PaymentMethodModal.pricing_modal)
+        self.driver.switch_default_content(self.pricing_modal)
 
     def enter_cardno(self, element_css, content):
-        self.switch_to_iframe(PaymentMethodModal.card_no_iframe)
-        self.driver.send_data(By.CSS_SELECTOR, element_css, content, 20)
+        self.switch_to_iframe(self.card_no_iframe)
+        self.driver.send_data(element_css, content, 20)
         self.switch_to_default_content()
 
     def enter_expiration(self, element_css, content):
-        self.switch_to_iframe(PaymentMethodModal.card_no_iframe)
-        self.driver.send_data(By.CSS_SELECTOR, element_css, content, 20)
+        self.switch_to_iframe(self.card_no_iframe)
+        self.driver.send_data(element_css, content, 20)
         self.switch_to_default_content()
 
     def enter_cvv(self, element_css, content):
-        self.switch_to_iframe(PaymentMethodModal.card_no_iframe)
-        self.driver.send_data(By.CSS_SELECTOR, element_css, content, 20)
+        self.switch_to_iframe(self.card_no_iframe)
+        self.driver.send_data(element_css, content, 20)
         self.switch_to_default_content()
 
     def enter_postalcode(self, element_css, content):
-        self.switch_to_iframe(PaymentMethodModal.card_no_iframe)
-        self.driver.send_data(By.CSS_SELECTOR, element_css, content, 20)
+        self.switch_to_iframe(self.card_no_iframe)
+        self.driver.send_data(element_css, content, 20)
         self.switch_to_default_content()
 
     def enter_information(self):
-        self.enter_cardno(PaymentMethodModal.card_no_CSS, Config.card_no)
-        self.enter_expiration(PaymentMethodModal.expiration_date_CSS, Config.expiration_date)
-        self.enter_cvv(PaymentMethodModal.cvv_CSS, Config.cvv)
-        self.enter_postalcode(PaymentMethodModal.postal_CSS, Config.postal)
+        self.enter_cardno(self.card_no_CSS, Config.card_no)
+        self.enter_expiration(self.expiration_date_CSS, Config.expiration_date)
+        self.enter_cvv(self.cvv_CSS, Config.cvv)
+        self.enter_postalcode(self.postal_CSS, Config.postal)
 
     def submit_payment(self):
-        self.driver.click_on(By.CSS_SELECTOR, PaymentMethodModal.pay_now_CSS, 5)
+        self.driver.click_on(self.pay_now_CSS, 5)
+        self.driver.click_on(self.pay_now_CSS, 5)
 

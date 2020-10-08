@@ -1,5 +1,6 @@
 from Selenium.pageobjectmodel.pom.base.base_page import BasePage
 from selenium.webdriver.common.by import By
+from Selenium.pageobjectmodel.test.config import Config
 
 
 class HomePage(BasePage):
@@ -8,14 +9,14 @@ class HomePage(BasePage):
     balance_value_button_CSS = "#test-session-balance-header-button > strong"
     pricing_tab_CSS = "#pricing-navlink-landing"
 
-    expected_url = "https://www.got-it.io/solutions/excel-chat/home"
+    expected_url = Config.homepageUrl
 
-    def wait_for_session_balance_button(self):
-        return self.driver.is_shown_on_page(By.CSS_SELECTOR, HomePage.session_balance_button_CSS, 20)
+    def is_present(self):
+        return self.driver.is_shown_on_page(self.session_balance_button_CSS, 20)
 
     def get_session_balance(self):
-        self.driver.get_text(By.CSS_SELECTOR, HomePage.balance_value_button_CSS, 20)
+        return self.driver.get_text(self.balance_value_button_CSS, 20)
 
     def click_pricing_tab(self):
-        self.driver.click_on(By.CSS_SELECTOR, HomePage.pricing_tab_CSS, 20)
+        self.driver.click_on(xself.pricing_tab_CSS, 20)
 

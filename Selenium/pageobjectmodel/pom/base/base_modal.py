@@ -1,5 +1,4 @@
 from Selenium.pageobjectmodel.pom.base.base_po import BasePageObject
-from Selenium.pageobjectmodel.driver_api import DriverAPI
 
 
 class BaseModal(BasePageObject):

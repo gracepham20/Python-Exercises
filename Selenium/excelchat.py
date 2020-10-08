@@ -104,7 +104,7 @@ class ExcelChat:
 
         self.purchase()
 
-        driver.current_url
+        self.current_url
 
 
 if __name__ == '__main__':

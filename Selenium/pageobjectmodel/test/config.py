@@ -1,7 +1,9 @@
 class Config:
     # url
     baseUrl = "https://www.got-it.io/solutions/excel-chat/"
-    homepageURL = "https://www.got-it.io/solutions/excel-chat/home"
+    homepageUrl = baseUrl+"home"
+    pricingUrl = baseUrl+"pricing/personal"
+
 
     # user information
     login_email = "grace+ec2@gotitapp.co"

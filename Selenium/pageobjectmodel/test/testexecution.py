@@ -1,61 +1,70 @@
-from Selenium.pageobjectmodel.browser import Browser
+from Selenium.pageobjectmodel.browser import get_browser_by_type
 from Selenium.pageobjectmodel.test.config import Config
 from Selenium.pageobjectmodel.pom.landing.landingpage import LandingPage
-from Selenium.pageobjectmodel.pom.landing.landingmodal import LandingModal
+from Selenium.pageobjectmodel.pom.landing.loginmodal import LoginModal
 from Selenium.pageobjectmodel.pom.home.homepage import *
 from Selenium.pageobjectmodel.pom.home.pricingpage import *
 from Selenium.pageobjectmodel.pom.home.paymentmethod import *
+from Selenium.pageobjectmodel.driver_api import DriverAPI
+from Selenium.pageobjectmodel.browsertype import BrowserType
+from Selenium.pageobjectmodel.driver_api import DriverAPI
 
 
 class TestExecution:
+
     def __init__(self, driver):
         self.driver = driver
 
     def test_purchase_session(self):
         self.account_login()
-        balance_before = self.check_balance()
+        balance_before = self.get_balance_value()
         self.choose_a_plan()
         self.make_payment()
         self.relocate_to_homepage()
-        balance_after = self.check_balance()
+        balance_after = self.get_balance_value()
         self.compare_balance(balance_before, balance_after)
 
     def account_login(self):
         # locate to landing page
         self.driver.get(Config.baseUrl)
         # click on log in button on landing page
-        self.driver.click_login_button()
-        # wait for login modal to load
-        self.driver.wait_for_login_modal()
-        # fill in login email and password
-        self.driver.enter_login_email()
-        self.driver.enter_login_password()
-        # click login button
-        self.driver.click_to_login()
+        lp = LandingPage(self.driver)
+        lp.click_login_button()
 
-    def check_balance(self):
+        lm = LoginModal(self.driver)
+        # fill in login email and password
+        lm.enter_login_email()
+        lm.enter_login_password()
+        # click login button
+        lm.click_to_login()
+
+    def get_balance_value(self):
+        hp = HomePage(self.driver)
         # wait for session balance on homepage to present
-        self.driver.wait_for_session_balance_button()
+        hp.is_present()
         # check session balance
-        return self.driver.get_session_balance()
+        return hp.get_session_balance()
 
     def choose_a_plan(self):
+        hp = HomePage(self.driver)
         # click on pricing tab
-        self.driver.click_pricing_tab()
+        hp.click_pricing_tab()
         # click on first pricing option
-        self.driver.click_first_pricing_plan()
+        pp = PricingPage(self.driver)
+        pp.choose_pricing_plan(0)
         # click on pay by card option
 
     def make_payment(self):
-        self.driver.click_option_paybycard()
+        pm = PaymentMethodModal(self.driver)
+        pm.click_option_paybycard()
         # enter payment information
-        self.driver.enter_information()
+        pm.enter_information()
         # submit payment
-        self.driver.submit_payment()
+        pm.submit_payment()
 
     def relocate_to_homepage(self):
         # relocate to homepage
-        self.driver.get_link(Config.homepageURL)
+        self.driver.get_link(Config.homepageUrl)
 
     @staticmethod
     def compare_balance(balance_before, balance_after):
@@ -63,7 +72,6 @@ class TestExecution:
 
 
 if __name__ == "__main__":
-    driver = Browser.get_browser_by_type()
-    driver.maximize_window()
+    driver = get_browser_by_type(BrowserType.Chrome)
     test = TestExecution(driver)
     test.test_purchase_session()

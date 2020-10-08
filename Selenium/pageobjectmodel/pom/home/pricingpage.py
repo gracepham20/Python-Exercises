@@ -1,12 +1,13 @@
 from Selenium.pageobjectmodel.pom.base.base_page import BasePage
 from selenium.webdriver.common.by import By
+from Selenium.pageobjectmodel.test.config import Config
 
 
 class PricingPage(BasePage):
-    option1_button_CSS = ".gi-coverPricing-Inner--Individuals div:nth-child(1) > div > .gi-pricingItem-Button button"
+    purchases_button_CSS = ".gi-coverPricing-Inner .btn"
 
-    expected_url = "https://www.got-it.io/solutions/excel-chat/pricing/personal"
+    expected_url = Config.pricingUrl
 
-    def click_first_pricing_plan(self):
-        self.driver.click_on(By.CSS_SELECTOR, PricingPage.option1_button_CSS, 20)
-
+    def choose_pricing_plan(self, index):
+        button_list = self.driver.find_elements(self.purchases_button_CSS)
+        self.driver.click_on(button_list[index], 20)
