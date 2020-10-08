@@ -72,8 +72,9 @@ class TestExecution:
         assert balance_before == balance_after, "Payment Unsuccessful!"
 
     def check_card_availability(self):
+        # check if payment modal is present on page
         self.driver.is_present_on_page(PaymentMethodModal.expected_id, By.CSS_SELECTOR, 50)
-
+        # find past purchase method option
         card_available = self.driver.find(PaymentMethodModal.available_card, By.CSS_SELECTOR, 20)
 
         if card_available is not None:
