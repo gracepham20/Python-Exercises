@@ -98,13 +98,29 @@ class ExcelChat:
         WebDriverWait(self.driver, 20).until(
             EC.element_to_be_clickable((By.CSS_SELECTOR, FileInput.option1_button_CSS))).click()
 
+        self.check_card_availability()
+
         # choose option to pay by card
         WebDriverWait(self.driver, 50).until(
             EC.element_to_be_clickable((By.CSS_SELECTOR, FileInput.pay_by_card_CSS))).click()
 
         self.purchase()
 
-        self.current_url
+    def check_card_availability(self):
+        WebDriverWait(self.driver, 50).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, ".modal - content")))
+
+        card_available = self.driver.find_element(By.CSS_SELECTOR, ".braintree - method__label")
+
+        if card_available is not None:
+            WebDriverWait(self.driver, 20).until(
+                EC.element_to_be_clickable((By.CSS_SELECTOR, ".braintree - large - button"))).click()
+        else:
+            pass
+
+
+
+
 
 
 if __name__ == '__main__':
