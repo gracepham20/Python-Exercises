@@ -25,7 +25,8 @@ class TestExecution:
 
     def account_login(self):
         # locate to landing page
-        self.driver.get(Config.baseUrl)
+        d = DriverAPI(self.driver)
+        d.get_link(Config.baseUrl)
         # click on log in button on landing page
         lp = LandingPage(self.driver)
         lp.click_login_button()
