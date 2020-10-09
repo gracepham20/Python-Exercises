@@ -65,7 +65,6 @@ class DriverAPI:
             return None
 
     def relocate_to_url(self, url, element_method, method_used=By.CSS_SELECTOR, timeout=20):
-        # time.sleep(20)
         WebDriverWait(self.driver, timeout).until(
             EC.invisibility_of_element_located((method_used, element_method)))
         self.driver.get(url)
