@@ -58,16 +58,14 @@ class DriverAPI:
     def find_list_element(self, element_method, method_used=By.CSS_SELECTOR, timeout=10):
         try:
             WebDriverWait(self.driver, timeout).until(
-                EC.presence_of_element_located((method_used, element_method)))
-
-            return self.driver.find_elements(element_css)
+                EC.element_to_be_clickable((method_used, element_method)))
+            elements = self.driver.find_elements(by=By.CSS_SELECTOR, value=element_method)
+            return elements
         except:
             return None
 
-    def wait_for_element(self, element_method, method_used=By.CSS_SELECTOR, timeout=10):
-        return WebDriverWait(self.driver, timeout).until(
-            EC.presence_of_element_located((method_used, element_method)))
-
-    def relocate_to_url(self, url):
-        time.sleep(20)
+    def relocate_to_url(self, url, element_method, method_used=By.CSS_SELECTOR, timeout=20):
+        # time.sleep(20)
+        WebDriverWait(self.driver, timeout).until(
+            EC.invisibility_of_element_located((method_used, element_method)))
         self.driver.get(url)

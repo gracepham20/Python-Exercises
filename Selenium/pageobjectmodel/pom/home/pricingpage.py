@@ -4,9 +4,15 @@ from pageobjectmodel.test.config import Config
 
 
 class PricingPage(BasePage):
-    purchase_buttons_CSS = ".gi-coverPricing-Inner--Individuals div:nth-child(1) > div > .gi-pricingItem-Button button"
+    purchase_buttons_CSS = ".gi-coverPricing-Inner .btn"
 
     expected_url = Config.pricingUrl
 
-    def choose_pricing_plan(self):
-        self.driver.click_on(self.purchase_buttons_CSS, By.CSS_SELECTOR, 30)
+    def is_present(self):
+        return self.driver.is_present_on_page(self.purchase_buttons_CSS, timeout=30)
+
+    def choose_pricing_plan(self, index):
+        button_list = self.driver.find_list_element(self.purchase_buttons_CSS, By.CSS_SELECTOR, 20)
+        plan_chosen = button_list[index]
+        plan_chosen.click()
+

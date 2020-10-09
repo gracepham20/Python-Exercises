@@ -60,3 +60,7 @@ class PaymentMethodModal(BaseModal):
 
     def submit_payment(self):
         self.driver.click_on(self.pay_now_CSS, timeout=5)
+
+    def wait_for_purchase_confirmation(self):
+        # wait for purchase confirmation and relocate to homepage
+        self.driver.relocate_to_url(Config.homepageUrl, self.purchase_successful_modal_CSS, timeout=20)

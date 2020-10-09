@@ -8,7 +8,6 @@ from pageobjectmodel.pom.home.pricingpage import PricingPage
 from pageobjectmodel.pom.home.paymentmethod import PaymentMethodModal
 from pageobjectmodel.driver_api import DriverAPI
 from pageobjectmodel.browsertype import BrowserType
-import time
 
 
 class TestExecution:
@@ -21,7 +20,6 @@ class TestExecution:
         balance_before = self.get_balance_value()
         self.choose_a_plan()
         self.make_payment()
-        self.relocate_to_homepage()
         balance_after = self.get_balance_value()
         self.compare_balance(balance_before, balance_after)
 
@@ -52,8 +50,8 @@ class TestExecution:
         hp.click_pricing_tab()
         # click on first pricing option
         pp = PricingPage(self.driver)
-        # choose pricing plan
-        pp.choose_pricing_plan()
+        # choose first pricing plan
+        pp.choose_pricing_plan(0)
         # click on pay by card option
 
     def make_payment(self):
@@ -75,13 +73,7 @@ class TestExecution:
         pm.enter_information()
         # submit payment
         pm.submit_payment()
-
-    def wait_for_purchase_confirmation(self):
-        return self.driver.wait_for_element(PaymentMethodModal.purchase_successful_modal_CSS, timeout=20)
-
-    def relocate_to_homepage(self):
-        # relocate to homepage
-        self.driver.relocate_to_url(Config.homepageUrl)
+        pm.wait_for_purchase_confirmation()
 
     @staticmethod
     def compare_balance(balance_before, balance_after):
