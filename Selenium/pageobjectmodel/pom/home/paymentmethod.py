@@ -1,5 +1,6 @@
-from pageobjectmodel.pom.base.base_modal import BaseModal
-from pageobjectmodel.test.config import Config
+from Selenium.pageobjectmodel.pom.base.base_modal import BaseModal
+from Selenium.pageobjectmodel.test.config import Config
+from selenium.webdriver.common.by import By
 
 
 class PaymentMethodModal(BaseModal):
@@ -64,3 +65,18 @@ class PaymentMethodModal(BaseModal):
     def wait_for_purchase_confirmation(self):
         # wait for purchase confirmation and relocate to homepage
         self.driver.relocate_to_url(Config.homepageUrl, self.purchase_successful_modal_CSS, timeout=20)
+
+    def check_for_available_card(self):
+        try:
+            card_available = self.driver.find(self.available_card, By.CSS_SELECTOR, timeout=40)
+        except:
+            card_available = None
+
+        if card_available is not None:
+            print("aaaaaaaaaaaaaaaaaaaaaaaaaaa")
+            self.driver.click_on(self.pay_by_another_method_button, By.CSS_SELECTOR, 30)
+        else:
+            pass
+
+    def is_present(self):
+        return self.driver.is_present_on_page(self.expected_id, By.ID, timeout=10)

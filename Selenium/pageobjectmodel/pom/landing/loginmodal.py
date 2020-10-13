@@ -1,5 +1,6 @@
-from pageobjectmodel.pom.base.base_modal import BaseModal
-from pageobjectmodel.test.config import Config
+from Selenium.pageobjectmodel.pom.base.base_modal import BaseModal
+from Selenium.pageobjectmodel.test.config import Config
+from selenium.webdriver.common.by import By
 
 
 class LoginModal(BaseModal):
@@ -18,3 +19,6 @@ class LoginModal(BaseModal):
 
     def click_to_login(self):
         self.driver.click_on(self.login_button_CSS)
+
+    def is_present(self):
+        return self.driver.is_present_on_page(self.expected_id, method_used=By.ID, timeout=10)

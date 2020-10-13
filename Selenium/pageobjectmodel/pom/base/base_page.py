@@ -1,6 +1,6 @@
 import time
 
-from pageobjectmodel.pom.base.base_po import BasePageObject
+from Selenium.pageobjectmodel.pom.base.base_po import BasePageObject
 
 
 class BasePage(BasePageObject):

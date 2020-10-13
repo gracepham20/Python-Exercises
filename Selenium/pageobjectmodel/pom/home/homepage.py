@@ -1,5 +1,5 @@
-from pageobjectmodel.pom.base.base_page import BasePage
-from pageobjectmodel.test.config import Config
+from Selenium.pageobjectmodel.pom.base.base_page import BasePage
+from Selenium.pageobjectmodel.test.config import Config
 
 
 class HomePage(BasePage):
