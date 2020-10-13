@@ -68,3 +68,15 @@ class DriverAPI:
         WebDriverWait(self.driver, timeout).until(
             EC.invisibility_of_element_located((method_used, element_method)))
         self.driver.get(url)
+
+    def take_screenshot(self, scenario_name, step_name):
+        file_name = f"{scenario_name}_{step_name}_{round(time.time() * 1000)}.png"
+        screenshot_directory = "/Users/admin/PycharmProjects/Python-Exercises/behaveproject/screenshot"
+                                #"../behaveproject/screenshot"
+        destination_file = screenshot_directory + file_name
+
+        try:
+            self.driver.save_screenshot(destination_file)
+            print("Screenshot saved to directory --> :: " + destination_file)
+        except NotADirectoryError:
+            print("Failed to save screenshot")
