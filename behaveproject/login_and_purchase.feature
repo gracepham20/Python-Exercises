@@ -1,6 +1,5 @@
 # Created by admin at 10/11/20
 Feature: Log in to user account and purchase a subscription plan
-  # Enter feature description here
   @fixture.browser.chrome.False
   Scenario: User logs in to account and purchases first subscription plan, paying by card
     Given I haven't launch the browser
