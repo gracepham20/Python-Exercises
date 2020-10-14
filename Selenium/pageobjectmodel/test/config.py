@@ -6,8 +6,11 @@ class Config:
 
     # user information
     login_email = "grace+excelchat1@gotitapp.co"
-    login_pass = "Grace123"
+    login_pass = "Grace1234"
     card_no = "5555555555554444"
     expiration_date = "08/22"
     cvv = "123"
     postal = "100000"
+
+    # storing directory
+    screenshot_directory = "../../PycharmProjects/Python-Exercises/behaveproject/screenshot/"

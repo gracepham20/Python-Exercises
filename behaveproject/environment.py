@@ -1,5 +1,6 @@
 from behave import use_fixture
 from Selenium.pageobjectmodel.driver_api import DriverAPI
+from Selenium.pageobjectmodel.test.config import Config
 from behaveproject.fixture import *
 from Selenium.pageobjectmodel.browsertype import BrowserType
 
@@ -27,4 +28,5 @@ def before_scenario(context, scenario):
 
 def after_step(context, step):
     if step.status == "failed":
-        DriverAPI(context.browser).take_screenshot(context.scenario_name, step.name)
+        scenario_step_name = f"{context.scenario_name}_{step.name}"
+        DriverAPI(context.browser).take_screenshot(scenario_step_name, Config.screenshot_directory)
