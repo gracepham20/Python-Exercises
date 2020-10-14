@@ -8,7 +8,6 @@ class LandingPage(BasePage):
     login_option_CSS = "#test-login-button"
 
     expected_url = Config.baseUrl
-    #print("aaaaaaaaaaa")
 
     def click_login_button(self):
         self.driver.click_on(self.login_option_CSS)

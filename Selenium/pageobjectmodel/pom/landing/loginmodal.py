@@ -20,5 +20,3 @@ class LoginModal(BaseModal):
     def click_to_login(self):
         self.driver.click_on(self.login_button_CSS)
 
-    def is_present(self):
-        return self.driver.is_present_on_page(self.expected_id, method_used=By.ID, timeout=10)

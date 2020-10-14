@@ -73,10 +73,7 @@ class PaymentMethodModal(BaseModal):
             card_available = None
 
         if card_available is not None:
-            print("aaaaaaaaaaaaaaaaaaaaaaaaaaa")
             self.driver.click_on(self.pay_by_another_method_button, By.CSS_SELECTOR, 30)
         else:
             pass
 
-    def is_present(self):
-        return self.driver.is_present_on_page(self.expected_id, By.ID, timeout=10)

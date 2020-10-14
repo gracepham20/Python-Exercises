@@ -4,13 +4,12 @@ from selenium.webdriver.chrome.options import Options as COptions
 from selenium.webdriver.firefox.options import Options as FOptions
 
 
-def get_browser_by_type(browser_name, headless=True):
+def get_browser_by_type(browser_name, headless=False):
     if browser_name == BrowserType.Chrome:
         options = COptions()
         options.headless = headless
         return webdriver.Chrome(options=options, executable_path="../../PycharmProjects/Python-Exercises/Selenium"
                                                                  "/drivers/chromedriver")
-    # "/Users/admin/PycharmProjects/Python-Exercises/Selenium/drivers/chromedriver"
     elif browser_name == BrowserType.Firefox:
         options = FOptions()
         options.headless = headless

@@ -27,7 +27,6 @@ class DriverAPI:
         try:
             element = WebDriverWait(self.driver, timeout).until(
                 EC.presence_of_element_located((method_used, element_method)))
-
             return element
         except:
             return None
@@ -43,10 +42,10 @@ class DriverAPI:
         return content.text
 
     def is_present_on_page(self, element_method, method_used=By.CSS_SELECTOR, timeout=10):
-        try:
-            self.find(element_method, method_used, timeout)
+
+        if self.find(element_method, method_used, timeout) is not None:
             return True
-        except:
+        else:
             return False
 
     def get_current_url(self):
@@ -71,8 +70,7 @@ class DriverAPI:
 
     def take_screenshot(self, scenario_name, step_name):
         file_name = f"{scenario_name}_{step_name}_{round(time.time() * 1000)}.png"
-        screenshot_directory = "/Users/admin/PycharmProjects/Python-Exercises/behaveproject/screenshot"
-                                #"../behaveproject/screenshot"
+        screenshot_directory = "../../PycharmProjects/Python-Exercises/behaveproject/screenshot/"
         destination_file = screenshot_directory + file_name
 
         try:
