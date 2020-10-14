@@ -35,9 +35,6 @@ def step_impl(context):
 
 @when("I click log into my account")
 def step_impl(context):
-    # t = context.table
-    # t["user"]
-    #print("step1")
     LoginModal(context.browser).click_to_login()
 
 
