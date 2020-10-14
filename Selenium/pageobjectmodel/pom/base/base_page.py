@@ -8,7 +8,7 @@ from Selenium.pageobjectmodel.pom.base.base_po import BasePageObject
 
 
 class BasePage(BasePageObject):
-    expected_url = None
+    expected_url = ""
 
     def is_present(self):
         return self.driver.check_url(self.expected_url)
