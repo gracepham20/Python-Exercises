@@ -9,10 +9,9 @@ class PricingPage(BasePage):
     expected_url = Config.pricingUrl
 
     def is_present(self):
-        return self.driver.is_present_on_page(self.purchase_buttons_CSS, timeout=10)
+        return self.driver.check_url(Config.pricingUrl)
 
     def choose_pricing_plan(self, index):
         button_list = self.driver.find_list_element(self.purchase_buttons_CSS, By.CSS_SELECTOR, 10)
         plan_chosen = button_list[index]
         plan_chosen.click()
-

@@ -1,5 +1,7 @@
 from behave import *
 from selenium import webdriver
+
+from Selenium.pageobjectmodel.driver_api import DriverAPI
 from Selenium.pageobjectmodel.pom.home.homepage import HomePage
 from Selenium.pageobjectmodel.pom.home.paymentmethod import PaymentMethodModal
 from Selenium.pageobjectmodel.pom.home.pricingpage import PricingPage
@@ -8,14 +10,10 @@ from Selenium.pageobjectmodel.pom.landing.loginmodal import LoginModal
 from Selenium.pageobjectmodel.test.config import Config
 
 
-@given("I haven't launch the browser")
-def step_impl(context):
-    pass
-
-
-@when("I launch the browser and get to the website")
+@given("I'm at the landing page")
 def step_impl(context):
     context.browser.get(Config.baseUrl)
+    assert LandingPage(context.browser).is_present()
 
 
 @when("I click on log-in button at the landing page")
@@ -28,15 +26,19 @@ def step_impl(context):
     assert LoginModal(context.browser).is_present()
 
 
-@when("I log into my account")
+@when("I enter login email and password")
+def step_impl(context):
+    login_modal = LoginModal(context.browser)
+    login_modal.enter_login_email(Config.login_email)
+    login_modal.enter_login_password(Config.login_pass)
+
+
+@when("I click log into my account")
 def step_impl(context):
     # t = context.table
     # t["user"]
     #print("step1")
-    login_modal = LoginModal(context.browser)
-    login_modal.enter_login_email()
-    login_modal.enter_login_password()
-    login_modal.click_to_login()
+    LoginModal(context.browser).click_to_login()
 
 
 @then("I should be at the home page")
@@ -56,7 +58,7 @@ def step_impl(context):
 
 @then("I should be redirected to pricing page")
 def step_impl(context):
-    PricingPage(context.browser).is_present()
+    assert PricingPage(context.browser).is_present()
 
 
 @when("I click on the first pricing plan")
@@ -72,18 +74,18 @@ def step_impl(context):
 @when("I choose to pay with card")
 def step_impl(context):
     payment_method_modal = PaymentMethodModal(context.browser)
-    payment_method_modal.check_for_available_card()
+    payment_method_modal.pay_by_another_method()
     payment_method_modal.click_option_paybycard()
-    payment_method_modal.enter_information()
+    payment_method_modal.purchase()
     payment_method_modal.submit_payment()
 
 
-@when("I should wait for payment successful confirmation")
+@when("I wait for payment method modal to dismiss")
 def step_impl(context):
-    PaymentMethodModal(context.browser).wait_for_purchase_confirmation()
+    PaymentMethodModal(context.browser).wait_for_payment_modal_dismissed()
 
 
-@when("I should be redirected to home page")
+@when("I relocate to home page")
 def step_impl(context):
     context.browser.get(Config.homepageUrl)
     HomePage(context.browser).is_present()

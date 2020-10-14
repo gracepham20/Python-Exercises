@@ -4,7 +4,7 @@ from selenium.webdriver.chrome.options import Options as COptions
 from selenium.webdriver.firefox.options import Options as FOptions
 
 
-def get_browser_by_type(browser_name, headless=False):
+def get_browser_by_type(browser_name, headless=True):
     if browser_name == BrowserType.Chrome:
         options = COptions()
         options.headless = headless
@@ -17,3 +17,5 @@ def get_browser_by_type(browser_name, headless=False):
                                  , options=options)
     else:
         assert (browser_name is BrowserType.Chrome) or (browser_name is BrowserType.Firefox), "Browser Invalid"
+
+

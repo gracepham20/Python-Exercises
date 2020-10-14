@@ -9,10 +9,10 @@ class HomePage(BasePage):
     pricing_tab_CSS = "#pricing-navlink-landing"
 
     def is_present(self):
-        return self.driver.is_present_on_page(self.balance_value_button_CSS, timeout=30)
+        return self.driver.check_url(Config.homepageUrl)
 
     def get_session_balance(self):
-        return self.driver.get_text(self.balance_value_button_CSS, timeout=20)
+        return self.driver.get_text(self.balance_value_button_CSS, timeout=10)
 
     def click_pricing_tab(self):
-        self.driver.click_on(self.pricing_tab_CSS, timeout=20)
+        self.driver.click_on(self.pricing_tab_CSS, timeout=10)

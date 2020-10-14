@@ -11,12 +11,11 @@ class LoginModal(BaseModal):
 
     expected_id = "#modal-login"
 
-    def enter_login_email(self):
-        self.driver.send_data(self.login_email_CSS, Config.login_email)
+    def enter_login_email(self, login_email):  # edit input
+        self.driver.send_data(self.login_email_CSS, login_email)
 
-    def enter_login_password(self):
-        self.driver.send_data(self.login_pass_CSS, Config.login_pass)
+    def enter_login_password(self, login_password):
+        self.driver.send_data(self.login_pass_CSS, login_password)
 
     def click_to_login(self):
         self.driver.click_on(self.login_button_CSS)
-

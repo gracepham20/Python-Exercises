@@ -27,53 +27,65 @@ class PaymentMethodModal(BaseModal):
     def click_option_paybycard(self):
         self.driver.click_on(self.pay_by_card_CSS, timeout=50)
 
-    def switch_to_iframe(self, iframe_id):
-        self.driver.switch_iframe(iframe_id)
-
-    def switch_to_default_content(self):
-        self.driver.switch_default_content()
-
-    def enter_cardno(self, element_css, content):
-        self.switch_to_iframe(self.card_no_iframe)
-        self.driver.send_data(element_css, content, timeout=20)
-        self.switch_to_default_content()
-
-    def enter_expiration(self, element_css, content):
-        self.switch_to_iframe(self.expiration_date_iframe)
-        self.driver.send_data(element_css, content, timeout=20)
-        self.switch_to_default_content()
-
-    def enter_cvv(self, element_css, content):
-        self.switch_to_iframe(self.cvv_iframe)
-        self.driver.send_data(element_css, content, timeout=20)
-        self.switch_to_default_content()
-
-    def enter_postalcode(self, element_css, content):
-        self.switch_to_iframe(self.postal_iframe)
-        self.driver.send_data(element_css, content, timeout=20)
-        self.switch_to_default_content()
-
-    def enter_information(self):
-        self.enter_cardno(self.card_no_CSS, Config.card_no)
-        self.enter_expiration(self.expiration_date_CSS, Config.expiration_date)
-        self.enter_cvv(self.cvv_CSS, Config.cvv)
-        self.enter_postalcode(self.postal_CSS, Config.postal)
+    # def enter_cardno(self, element_css, content):  # remove css
+    #     self.driver.switch_iframe(self.card_no_iframe)
+    #     self.driver.send_data(element_css, content, timeout=20)
+    #     self.driver.switch_default_content()
+    #
+    # def enter_expiration(self, element_css, content):
+    #     self.driver.switch_iframe(self.expiration_date_iframe)
+    #     self.driver.send_data(element_css, content, timeout=10)
+    #     self.driver.switch_default_content()
+    #
+    # def enter_cvv(self, element_css, content):
+    #     self.driver.switch_iframe(self.cvv_iframe)
+    #     self.driver.send_data(element_css, content, timeout=10)
+    #     self.driver.switch_default_content()
+    #
+    # def enter_postalcode(self, element_css, content):
+    #     self.driver.switch_iframe(self.postal_iframe)
+    #     self.driver.send_data(element_css, content, timeout=10)
+    #     self.driver.switch_default_content()
+    #
+    # def enter_information(self):
+    #     self.enter_cardno(self.card_no_CSS, Config.card_no)
+    #     self.enter_expiration(self.expiration_date_CSS, Config.expiration_date)
+    #     self.enter_cvv(self.cvv_CSS, Config.cvv)
+    #     self.enter_postalcode(self.postal_CSS, Config.postal)
 
     def submit_payment(self):
         self.driver.click_on(self.pay_now_CSS, timeout=5)
 
-    def wait_for_purchase_confirmation(self):
-        # wait for purchase confirmation and relocate to homepage
-        self.driver.relocate_to_url(Config.homepageUrl, self.purchase_successful_modal_CSS, timeout=20)
+    def wait_for_payment_modal_dismissed(self):
+        self.driver.wait_for_modal_dismissed(self.expected_id, timeout=40)
 
     def check_for_available_card(self):
         try:
             card_available = self.driver.find(self.available_card, By.CSS_SELECTOR, timeout=40)
         except:
             card_available = None
+        return card_available
 
+    def pay_by_another_method(self):
+        card_available = self.check_for_available_card()
         if card_available is not None:
             self.driver.click_on(self.pay_by_another_method_button, By.CSS_SELECTOR, 30)
         else:
             pass
 
+    def purchase(self):
+        self.fill_card(self.card_no_iframe, self.card_no_CSS, Config.card_no)
+
+        # fill card number
+        self.fill_card(self.expiration_date_iframe, self.expiration_date_CSS, Config.expiration_date)
+
+        # fill CVV
+        self.fill_card(self.cvv_iframe, self.cvv_CSS, Config.cvv)
+
+        # fill postal code
+        self.fill_card(self.postal_iframe, self.postal_CSS, Config.postal)
+
+    def fill_card(self, iframe, element, content):
+        self.driver.switch_iframe(iframe)
+        self.driver.send_data(element, content, timeout=10)
+        self.driver.switch_default_content()

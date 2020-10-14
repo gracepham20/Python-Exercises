@@ -13,7 +13,7 @@ class ExcelChat:
     def login(self):
         # open site
         self.driver.get(FileInput.baseUrl)
-
+ 
         # click on log in option
         self.driver.find_element(By.ID, FileInput.login_option_CSS).click()
 

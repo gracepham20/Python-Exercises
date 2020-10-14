@@ -8,10 +8,10 @@ class DriverAPI:
 
     def __init__(self, driver):
         self.driver = driver
+        self.driver.maximize_window()
 
     def get_link(self, url):
         self.driver.get(url)
-        self.driver.maximize_window()
 
     def click_on(self, element_method, method_used=By.CSS_SELECTOR, timeout=10):
         element = WebDriverWait(self.driver, timeout).until(EC.element_to_be_clickable((method_used, element_method)))
@@ -63,16 +63,19 @@ class DriverAPI:
         except:
             return None
 
-    def relocate_to_url(self, url, element_method, method_used=By.CSS_SELECTOR, timeout=20):
+    def wait_for_modal_dismissed(self, element_method, method_used=By.CSS_SELECTOR, timeout=30):
         WebDriverWait(self.driver, timeout).until(
             EC.invisibility_of_element_located((method_used, element_method)))
-        self.driver.get(url)
 
-    def take_screenshot(self, scenario_step_name, screenshot_directory):
-        file_name = f"{scenario_step_name}_{round(time.time() * 1000)}.png"
+    def take_screenshot(self, file_name, screenshot_directory):
+        file_name = f"{file_name}_{round(time.time() * 1000)}.png"
         destination_file = screenshot_directory + file_name
         try:
             self.driver.save_screenshot(destination_file)
             print("Screenshot saved to directory --> :: " + destination_file)
         except NotADirectoryError:
             print("Failed to save screenshot")
+
+    def check_url(self, url, time_out=10):
+        wait = WebDriverWait(self.driver, time_out)
+        return wait.until(EC.url_to_be(url))

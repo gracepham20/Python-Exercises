@@ -13,4 +13,4 @@ class LandingPage(BasePage):
         self.driver.click_on(self.login_option_CSS)
 
     def is_present(self):
-        return self.driver.is_present_on_page(self.login_option_CSS, method_used=By.CSS_SELECTOR, timeout=10)
+        return self.driver.check_url(Config.baseUrl)
