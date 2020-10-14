@@ -27,32 +27,6 @@ class PaymentMethodModal(BaseModal):
     def click_option_paybycard(self):
         self.driver.click_on(self.pay_by_card_CSS, timeout=50)
 
-    # def enter_cardno(self, element_css, content):  # remove css
-    #     self.driver.switch_iframe(self.card_no_iframe)
-    #     self.driver.send_data(element_css, content, timeout=20)
-    #     self.driver.switch_default_content()
-    #
-    # def enter_expiration(self, element_css, content):
-    #     self.driver.switch_iframe(self.expiration_date_iframe)
-    #     self.driver.send_data(element_css, content, timeout=10)
-    #     self.driver.switch_default_content()
-    #
-    # def enter_cvv(self, element_css, content):
-    #     self.driver.switch_iframe(self.cvv_iframe)
-    #     self.driver.send_data(element_css, content, timeout=10)
-    #     self.driver.switch_default_content()
-    #
-    # def enter_postalcode(self, element_css, content):
-    #     self.driver.switch_iframe(self.postal_iframe)
-    #     self.driver.send_data(element_css, content, timeout=10)
-    #     self.driver.switch_default_content()
-    #
-    # def enter_information(self):
-    #     self.enter_cardno(self.card_no_CSS, Config.card_no)
-    #     self.enter_expiration(self.expiration_date_CSS, Config.expiration_date)
-    #     self.enter_cvv(self.cvv_CSS, Config.cvv)
-    #     self.enter_postalcode(self.postal_CSS, Config.postal)
-
     def submit_payment(self):
         self.driver.click_on(self.pay_now_CSS, timeout=5)
 
