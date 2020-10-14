@@ -16,7 +16,6 @@ def step_impl(context):
 @when("I launch the browser and get to the website")
 def step_impl(context):
     context.browser.get(Config.baseUrl)
-    context.browser.maximize_window()
 
 
 @when("I click on log-in button at the landing page")

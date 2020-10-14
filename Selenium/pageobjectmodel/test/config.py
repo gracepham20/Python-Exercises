@@ -5,8 +5,8 @@ class Config:
     pricingUrl = baseUrl + "pricing/personal"
 
     # user information
-    login_email = "grace+excelchat1@gotitapp.co"
-    login_pass = "Grace1234"
+    login_email = "grace+excelchat@gotitapp.co"
+    login_pass = "Grace123"
     card_no = "5555555555554444"
     expiration_date = "08/22"
     cvv = "123"
